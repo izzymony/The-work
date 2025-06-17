@@ -5,6 +5,16 @@ import Buttons from '../components/Buttons'
 export default function AnimatedHeader() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const containerRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)]
+   interface ImageProps {
+       src: string;
+       width: number;
+       height: number;
+       position?: { x: number; y: number };
+       animation?: {
+           floatHeight?: number;
+           floatDuration?: number;
+       };
+   }
 
   const slides = [
     {
@@ -100,6 +110,7 @@ export default function AnimatedHeader() {
     }
   ]
 
+
   const animateSlide = (container: HTMLDivElement | null, index: number) => {
     if (!container) return
 
@@ -108,7 +119,7 @@ export default function AnimatedHeader() {
     
     // 1. Initial gather animation (center all images)
     const gather = () => {
-      elements.forEach((el, i) => {
+      elements.forEach((el) => {
         el.style.transition = 'transform 1s cubic-bezier(0.16, 1, 0.3, 1)'
         el.style.transform = 'translate(0, 0)'
       })
@@ -179,9 +190,9 @@ const floatDuration = (img as any).animation?.floatDuration ?? 4000;
     }
   }, [])
 
-  useEffect(() => {
-    animateSlide(containerRefs[currentSlide].current, currentSlide)
-  }, [currentSlide])
+    useEffect(() => {
+       animateSlide(containerRefs[currentSlide].current, currentSlide);
+   }, [currentSlide, containerRefs]);
 
   return (
     <div className="max-w-[360px] mx-auto overflow-hidden">
@@ -230,9 +241,9 @@ const floatDuration = (img as any).animation?.floatDuration ?? 4000;
               ref={containerRefs[index]}
               className="absolute top-1/2 left-1/2 w-[300px] h-[300px] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-30"
             >
-              {slide.images.map((img, i) => (
+              {slide.images.map((img, _) => (
                 <div 
-                  key={i}
+                  key={_}
                   className="absolute will-change-transform"
                   style={{
                     transition: 'transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -242,7 +253,7 @@ const floatDuration = (img as any).animation?.floatDuration ?? 4000;
                     src={img.src} 
                     width={img.width} 
                     height={img.height} 
-                    alt={`Icon ${i+1}`}
+                    alt={`Icon ${_+1}`}
                     priority
                     className="-mt-4 "
                   />
@@ -295,9 +306,9 @@ const floatDuration = (img as any).animation?.floatDuration ?? 4000;
        <Buttons/>
         
         
-        <p className="text-[#00000099] text-[12px] text-center mt-6">
-          By continuing, I agree to Instashop's <span className="text-[#FE2C55]"> Terms of <br /> use </span> and <span className="text-[#FE2C55]"> Privacy Policy</span>
-        </p>
+       <p className="text-[#00000099] text-[12px] text-center mt-6">
+  By continuing, I agree to Instashop&apos;s <span className="text-[#FE2C55]"> Terms of <br /> use </span> and <span className="text-[#FE2C55]"> Privacy Policy</span>
+</p>
       </div>
     </div>
   )
