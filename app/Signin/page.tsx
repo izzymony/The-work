@@ -127,8 +127,8 @@ export default function AnimatedHeader() {
 
     // 2. Spread out to custom positions
     const spread = () => {
-      elements.forEach((el, i) => {
-        const img = currentSlide.images[i]
+      elements.forEach((el, _) => {
+        const img = currentSlide.images[_]
         if (img.position) {
           const { x, y } = img.position
           el.style.transition = 'transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -139,8 +139,8 @@ export default function AnimatedHeader() {
 
     // 3. Floating animation
     const startFloating = () => {
-      elements.forEach((el, i) => {
-        const img = currentSlide.images[i]
+      elements.forEach((el, _) => {
+        const img = currentSlide.images[_]
         const currentTransform = el.style.transform || 'translate(0, 0)'
 const floatHeight = (img as any).animation?.floatHeight ?? 10;
 const floatDuration = (img as any).animation?.floatDuration ?? 4000;
