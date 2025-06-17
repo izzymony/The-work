@@ -1,7 +1,7 @@
 'use client'
-import { url } from "inspector";
+
 import {useRouter} from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import {motion, AnimatePresence} from "framer-motion"
 import Image from "next/image";
 

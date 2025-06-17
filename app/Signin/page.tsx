@@ -131,8 +131,8 @@ export default function AnimatedHeader() {
       elements.forEach((el, i) => {
         const img = currentSlide.images[i]
         const currentTransform = el.style.transform || 'translate(0, 0)'
-        const floatHeight = img.animation?.floatHeight || 10
-        const floatDuration = img.animation?.floatDuration || 4000
+const floatHeight = (img as any).animation?.floatHeight ?? 10;
+const floatDuration = (img as any).animation?.floatDuration ?? 4000;
         
         el.animate([
           { transform: `${currentTransform} translateY(0px)` },
