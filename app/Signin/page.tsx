@@ -65,7 +65,7 @@ export default function AnimatedHeader() {
       description: "Transform your Instagram or TikTok page into a smart storefront — with payments, delivery & growth insights all-in-one."
     },
     {
-      background: '/image (29).svg',
+      background: '/image (29).svg' ,
       images: [
         { 
           src: '/Frame 1618869215.svg', 
